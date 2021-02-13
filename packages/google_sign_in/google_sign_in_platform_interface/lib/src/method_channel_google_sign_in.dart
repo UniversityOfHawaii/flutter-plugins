@@ -25,10 +25,14 @@ class MethodChannelGoogleSignIn extends GoogleSignInPlatform {
       List<String> scopes = const <String>[],
       SignInOption signInOption = SignInOption.standard,
       String clientId}) {
+    print('hello tets');
+    print(clientId);
     return channel.invokeMethod<void>('init', <String, dynamic>{
       'signInOption': signInOption.toString(),
       'scopes': scopes,
       'hostedDomain': hostedDomain,
+      'clientId': clientId,
+      'testes': 'yum'
     });
   }
 
@@ -41,6 +45,7 @@ class MethodChannelGoogleSignIn extends GoogleSignInPlatform {
 
   @override
   Future<GoogleSignInUserData> signIn() {
+    print('method channel sign in');
     return channel
         .invokeMapMethod<String, dynamic>('signIn')
         .then(getUserDataFromMap);
