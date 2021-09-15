@@ -117,6 +117,12 @@ public class WebViewActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     webview = new WebView(this);
+
+    // work around to fix the 403 disallowed_useragent error when signing in on Android
+    String userAgent = webview.getSettings().getUserAgentString();
+    userAgent = userAgent.replaceAll("Version[^\\s]+", "");
+    webview.getSettings().setUserAgentString(userAgent);
+
     setContentView(webview);
     // Get the Intent that started this activity and extract the string
     final Intent intent = getIntent();
