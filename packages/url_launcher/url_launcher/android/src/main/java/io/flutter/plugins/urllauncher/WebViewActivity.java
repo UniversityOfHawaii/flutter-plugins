@@ -120,7 +120,8 @@ public class WebViewActivity extends Activity {
 
     // work around to fix the 403 disallowed_useragent error when signing in on Android
     String userAgent = webview.getSettings().getUserAgentString();
-    userAgent = userAgent.replaceAll("Version[^\\s]+", "");
+    // userAgent = userAgent.replaceAll("Version[^\\s]+", "");
+    userAgent = "Chrome/56.0.0 Mobile";
     webview.getSettings().setUserAgentString(userAgent);
 
     setContentView(webview);
